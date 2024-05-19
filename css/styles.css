@@ -1,4 +1,6 @@
 @import "https://fonts.googleapis.com/css2?family=Joti+One&display=swap";
+@import "https://fonts.googleapis.com";
+
 * {
   margin: 0;
   padding: 0;
@@ -33,10 +35,12 @@ nav ul {
   margin: 0;
   padding: 0;
 }
+
 nav ul li {
   display: inline-block;
   margin-right: 20px;
 }
+
 nav ul li a {
   color: #39ee51 !important;
   text-decoration: none;
@@ -63,6 +67,33 @@ h2 {
 
 .imagen {
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.imagen img {
+  max-width: 100%;
+  transition: filter 0.3s ease;
+}
+
+.imagen:hover img {
+  filter: grayscale(100%);
+}
+
+.imagen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.imagen:hover::before {
+  opacity: 1;
 }
 
 .texto {
@@ -74,61 +105,20 @@ h2 {
   margin-top: 0;
 }
 
-/* Invertir el orden en elementos impares */
-.grid-container .texto:nth-child(odd) {
-  order: 2;
-}
-
-.grid-container .imagen:nth-child(odd) {
+.grid-container .item:nth-child(4n+1) {
   order: 1;
 }
 
-/* Para dispositivos más pequeños */
-@media (max-width: 768px) {
-  .grid-container .texto,
-  .grid-container .imagen {
-      order: unset; /* Reiniciar el orden */
-  }
-
-  /* Invertir el orden en elementos impares */
-  .grid-container .texto:nth-child(odd),
-  .grid-container .imagen:nth-child(odd) {
-      order: unset; /* Reiniciar el orden */
-  }
+.grid-container .item:nth-child(4n+2) {
+  order: 2;
 }
 
-/* Estilos de la imagen */
-.imagen {
-  text-align: center;
-  position: relative; /* Posición relativa para posicionar el div superpuesto */
-  overflow: hidden; /* Para ocultar el div superpuesto */
+.grid-container .item:nth-child(4n+3) {
+  order: 4;
 }
 
-.imagen img {
-  max-width: 100%; /* Ajustar la imagen al contenedor */
-  transition: filter 0.3s ease; /* Transición para el efecto de blanco y negro */
-}
-
-/* Efecto de blanco y negro al pasar el cursor */
-.imagen:hover img {
-  filter: grayscale(100%); /* Convertir la imagen a blanco y negro */
-}
-
-/* Efecto de resaltado al pasar el cursor */
-.imagen::before {
-  content: ''; /* Contenido pseudo-elemento */
-  position: absolute; /* Posición absoluta */
-  top: 0; /* Alinear arriba */
-  left: 0; /* Alinear a la izquierda */
-  width: 100%; /* Ancho completo */
-  height: 100%; /* Altura completa */
-  background-color: rgba(255, 255, 255, 0.5); /* Color de fondo semi-transparente */
-  opacity: 0; /* Inicialmente transparente */
-  transition: opacity 0.3s ease; /* Transición para la opacidad */
-}
-
-.imagen:hover::before {
-  opacity: 1; /* Mostrar el fondo semi-transparente al pasar el cursor */
+.grid-container .item:nth-child(4n+4) {
+  order: 3;
 }
 
 .carousel-item img {
@@ -153,17 +143,20 @@ h2 {
   box-sizing: border-box;
   box-shadow: 1px 1px 5px 2px rgb(247, 186, 242);
 }
+
 .producto img {
   width: 100%;
   height: auto;
   display: block;
   border-radius: 5px;
 }
+
 .producto h3 {
   margin-top: 10px;
   font-size: 20px;
   text-align: center;
 }
+
 .producto p {
   margin-top: 5px;
   font-size: 16px;
@@ -184,21 +177,7 @@ label {
   margin-bottom: 5px;
 }
 
-input[type=text] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-input[type=email] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-textarea {
+input[type=text], input[type=email], textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -209,7 +188,7 @@ textarea {
   text-align: center;
 }
 
-input[type=submit] {
+input[type=submit], input[type=reset] {
   display: inline-block;
   padding: 10px 20px;
   background-color: #a70fe4;
@@ -219,28 +198,39 @@ input[type=submit] {
   cursor: pointer;
   margin-right: 10px;
 }
-input[type=submit]:hover {
+
+input[type=submit]:hover, input[type=reset]:hover {
   background-color: #45456d;
 }
 
-input[type=reset] {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #a70fe4;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: 10px;
-}
-input[type=reset]:hover {
-  background-color: #45456d;
+.map-container {
+  position: relative;
+  text-align: center;
+  color: white;
+  padding-top: 56.25%; /* Proporción 16:9 para mantener la responsividad del mapa */
+  height: 0;
+  overflow: hidden;
+  background-image: url('../resource/local.jpg'); /* Agregar la imagen como fondo */
+  background-size: cover;
+  background-position: center;
+  opacity: 0.8;
 }
 
-.maps {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.map-container iframe {
+  position: absolute;
+  top: 20px; /* Ajustamos la posición desde la parte superior */
+  right: 20px; /* Ajustamos la posición desde el lado derecho */
+  width: 50%; /* Ajustamos el ancho del mapa */
+  height: 50%; /* Ajustamos la altura del mapa */
+}
+
+.map-container p {
+  position: absolute;
+  bottom: 20px; /* Ajusta la posición vertical según sea necesario */
+  left: 20px; /* Ajusta la posición horizontal según sea necesario */
+  font-size: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
   border-radius: 5px;
 }
 
@@ -262,6 +252,7 @@ footer {
   font-size: 24px;
   color: #39ee51;
 }
+
 .icono-red-social:hover {
   color: #043f16;
 }
@@ -271,17 +262,31 @@ footer {
     font-size: 14px;
     margin-left: 10px;
   }
+
   .navbar-brand {
     font-size: 16px;
   }
+
+  .grid-container .texto,
+  .grid-container .imagen {
+    order: unset;
+  }
+
+  .grid-container .texto:nth-child(odd),
+  .grid-container .imagen:nth-child(odd) {
+    order: unset;
+  }
 }
+
 @media (max-width: 576px) {
   .navbar-nav .nav-link {
     font-size: 12px;
     margin-left: 5px;
   }
+
   .navbar-brand {
     font-size: 14px;
   }
+}
 
 /*# sourceMappingURL=styles.css.map */
