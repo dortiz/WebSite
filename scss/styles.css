@@ -56,19 +56,79 @@ h2 {
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
+  justify-items: center;
 }
 
 .imagen {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 }
+
+.texto {
+  text-align: left;
+  padding: 20px;
+}
+
+.texto h2 {
+  margin-top: 0;
+}
+
+/* Invertir el orden en elementos impares */
+.grid-container .texto:nth-child(odd) {
+  order: 2;
+}
+
+.grid-container .imagen:nth-child(odd) {
+  order: 1;
+}
+
+/* Para dispositivos más pequeños */
+@media (max-width: 768px) {
+  .grid-container .texto,
+  .grid-container .imagen {
+      order: unset; /* Reiniciar el orden */
+  }
+
+  /* Invertir el orden en elementos impares */
+  .grid-container .texto:nth-child(odd),
+  .grid-container .imagen:nth-child(odd) {
+      order: unset; /* Reiniciar el orden */
+  }
+}
+
+/* Estilos de la imagen */
+.imagen {
+  text-align: center;
+  position: relative; /* Posición relativa para posicionar el div superpuesto */
+  overflow: hidden; /* Para ocultar el div superpuesto */
+}
+
 .imagen img {
-  max-width: 100%;
-  height: auto;
+  max-width: 100%; /* Ajustar la imagen al contenedor */
+  transition: filter 0.3s ease; /* Transición para el efecto de blanco y negro */
+}
+
+/* Efecto de blanco y negro al pasar el cursor */
+.imagen:hover img {
+  filter: grayscale(100%); /* Convertir la imagen a blanco y negro */
+}
+
+/* Efecto de resaltado al pasar el cursor */
+.imagen::before {
+  content: ''; /* Contenido pseudo-elemento */
+  position: absolute; /* Posición absoluta */
+  top: 0; /* Alinear arriba */
+  left: 0; /* Alinear a la izquierda */
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Altura completa */
+  background-color: rgba(255, 255, 255, 0.5); /* Color de fondo semi-transparente */
+  opacity: 0; /* Inicialmente transparente */
+  transition: opacity 0.3s ease; /* Transición para la opacidad */
+}
+
+.imagen:hover::before {
+  opacity: 1; /* Mostrar el fondo semi-transparente al pasar el cursor */
 }
 
 .carousel-item img {
