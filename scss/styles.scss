@@ -14,7 +14,7 @@ $background-color_3: #45456d;
 	padding: 0;
 }
 .border-radius {
-	border-radius: 15px;
+	border-radius: 10px;
 }
 body {
 	font-family: $font-family_1;
@@ -66,11 +66,13 @@ h2 {
 }
 .imagen {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;;
 	align-items: center;
+	text-align: center;
 	img {
 		max-width: 100%;
 		height: auto;
+		margin-bottom: 10px;
 	}
 }
 .carousel-item {
@@ -205,7 +207,6 @@ footer {
 		font-size: 16px;
 	}
 }
-
 @media (max-width: 576px) {
 	.navbar-nav {
 		.nav-link {
