@@ -1,0 +1,30 @@
+@font-face {
+    font-family: "HighVoltage";
+    src: url("../resource/fonts/HighVoltage\ Rough.ttf");
+}
+
+body {
+    font-family: $font-family;
+    font-weight: 400;
+    font-style: normal;
+    color: antiquewhite;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+h1,
+h2 {
+    text-align: center;
+}
+
+.description p,
+.card-title,
+.card-text,
+.producto p,
+.producto h3,
+.derechos-autor p,
+.newsletter {
+    color: $primary-color;
+}

@@ -1,0 +1,24 @@
+.footer-content {
+    @include flex-center;
+}
+
+.redes-sociales {
+    @include flex-center;
+}
+
+.redes-sociales a {
+    margin-right: 10px;
+}
+
+.icono-red-social {
+    font-size: 24px;
+    color: $primary-color;
+
+    &:hover {
+        color: #043f16;
+    }
+}
+
+.derechos-autor {
+    text-align: right;
+}

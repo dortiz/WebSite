@@ -1,0 +1,56 @@
+.btn-whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    font-size: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.btn-whatsapp a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn {
+    @extend %button;
+    display: block;
+    margin: 0 auto;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    width: fit-content;
+}
+
+.btn-consultar {
+    @extend .btn;
+    background-color: $primary-color;
+    color: #fff;
+    margin-top: 10px;
+
+    &:hover {
+        background-color: #043f16;
+    }
+}
+
+button[type="submit"] {
+    @extend .btn;
+    background-color: $secondary-color;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: $hover-color;
+    }
+}

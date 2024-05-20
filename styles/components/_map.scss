@@ -1,0 +1,31 @@
+.map-container {
+    @include flex-center;
+    position: relative;
+    text-align: center;
+    color: white;
+    padding-top: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background-image: url('../resource/local.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+}
+
+.map-container iframe {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50%;
+    height: 50%;
+}
+
+.map-container p {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+}
